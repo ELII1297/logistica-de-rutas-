@@ -1,4 +1,4 @@
-// Coordenadas (puedes cambiarlas)
+
 const clientes = {
     "Carlos Medina": { lat: 25.6866, lng: -100.3161 },
     "Lucía Torres": { lat: 25.6700, lng: -100.3100 },
@@ -12,12 +12,12 @@ let puntosRuta = [];
 let polyline = null;
 let lista = document.getElementById("lista-seleccionados");
 
-// Agregar marcador + ruta + lista debajo del mapa
+
+
 function agregarRuta(nombre) {
     const c = clientes[nombre];
 
     L.marker([c.lat, c.lng]).addTo(mapa).bindPopup(nombre);
-
     puntosRuta.push([c.lat, c.lng]);
 
     actualizarLinea();
@@ -25,21 +25,27 @@ function agregarRuta(nombre) {
     agregarALista(nombre);
 }
 
-// Dibujar línea
+
+
 function actualizarLinea() {
     if (polyline) mapa.removeLayer(polyline);
     polyline = L.polyline(puntosRuta, { color: "blue" }).addTo(mapa);
-    mapa.fitBounds(polyline.getBounds());
+
+    if (puntosRuta.length > 1) {
+        mapa.fitBounds(polyline.getBounds());
+    }
 }
 
-// Mostrar lista debajo del mapa
+
+
 function agregarALista(nombre) {
     let li = document.createElement("li");
     li.textContent = nombre;
     lista.appendChild(li);
 }
 
-// Distancia total
+
+
 function actualizarDistancia() {
     let d = 0;
     for (let i = 0; i < puntosRuta.length - 1; i++) {
@@ -49,7 +55,8 @@ function actualizarDistancia() {
         "Distancia total: " + d.toFixed(2) + " km";
 }
 
-// Limpiar todo
+
+
 function limpiarRuta() {
     puntosRuta = [];
     lista.innerHTML = "";
@@ -57,7 +64,42 @@ function limpiarRuta() {
     document.getElementById("distancia").innerText = "Distancia total: 0 km";
 }
 
-// PWA service worker
+
+
 if ("serviceWorker" in navigator) {
-    navigator.serviceWorker.register("sw.js");
+    navigator.serviceWorker
+        .register("./sw.js")
+        .then(() => console.log("SW registrado"))
+        .catch(err => console.log("Error SW:", err));
 }
+
+
+
+let deferredPrompt;
+
+window.addEventListener("beforeinstallprompt", (e) => {
+    e.preventDefault();
+    deferredPrompt = e;
+
+    const btn = document.getElementById("btn-instalar");
+    btn.style.display = "block";
+
+    console.log("PWA lista para instalar");
+});
+
+function instalarPWA() {
+    if (!deferredPrompt) return;
+
+    deferredPrompt.prompt();
+
+    deferredPrompt.userChoice.then(choice => {
+        if (choice.outcome === "accepted") {
+            console.log("Usuario instaló la app");
+        } else {
+            console.log("Usuario canceló la instalación");
+        }
+    });
+
+    deferredPrompt = null;
+}
+
