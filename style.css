@@ -1,0 +1,54 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    background: #f5f7f2;
+}
+
+h1 {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.container {
+    display: flex;
+    padding: 20px;
+}
+
+.clientes {
+    width: 30%;
+    padding: 15px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 0 10px #ccc;
+}
+
+.cliente {
+    padding: 10px;
+    border: 1px solid #ddd;
+    background: #e9f7ec;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+
+#map {
+    height: 500px;
+    width: 600px;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+#lista-seleccionados {
+    padding-left: 20px;
+}
+
+.btn-clear {
+    width: 100%;
+    margin-top: 15px;
+    padding: 8px;
+    background: #d9534f;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}

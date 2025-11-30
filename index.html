@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ruta de Clientes</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+
+    <link rel="manifest" href="manifest.json">
+</head>
+<body>
+
+    <h1>Ruta de Clientes</h1>
+
+    <div class="container">
+
+        <!-- Lista de clientes -->
+        <div class="clientes">
+            <h2>Clientes disponibles</h2>
+
+            <div class="cliente" onclick="agregarRuta('Carlos Medina')">
+                <h3>Carlos Medina</h3>
+                <p>Zona Norte</p>
+            </div>
+
+            <div class="cliente" onclick="agregarRuta('Lucía Torres')">
+                <h3>Lucía Torres</h3>
+                <p>Zona Centro</p>
+            </div>
+
+            <div class="cliente" onclick="agregarRuta('Mario Pérez')">
+                <h3>Mario Pérez</h3>
+                <p>Zona Oriente</p>
+            </div>
+
+            <button onclick="limpiarRuta()" class="btn-clear">Limpiar ruta</button>
+        </div>
+
+        <div>
+            <div id="map"></div>
+
+            <!-- ORDEN DE CLIENTES SELECCIONADOS -->
+            <h3>Orden de visita:</h3>
+            <ul id="lista-seleccionados"></ul>
+
+            <p id="distancia">Distancia total: 0 km</p>
+        </div>
+
+    </div>
+
+    <script src="app.js"></script>
+
+</body>
+</html>
