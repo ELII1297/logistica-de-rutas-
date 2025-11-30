@@ -6,15 +6,18 @@
     <title>Ruta de Clientes</title>
 
     <link rel="stylesheet" href="style.css">
+    <link rel="manifest" href="manifest.json">
 
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
-
-    <link rel="manifest" href="manifest.json">
 </head>
 <body>
 
     <h1>Ruta de Clientes</h1>
+
+    <button id="btn-instalar" onclick="instalarPWA()" style="display:none;" class="btn-install">
+        Instalar App
+    </button>
 
     <div class="container">
 
@@ -43,7 +46,6 @@
         <div>
             <div id="map"></div>
 
-            <!-- ORDEN DE CLIENTES SELECCIONADOS -->
             <h3>Orden de visita:</h3>
             <ul id="lista-seleccionados"></ul>
 
@@ -53,6 +55,6 @@
     </div>
 
     <script src="app.js"></script>
-
 </body>
 </html>
+
